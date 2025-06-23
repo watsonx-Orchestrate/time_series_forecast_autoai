@@ -1,0 +1,88 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "JH Time Series Forecast AutoAI",
+    "version": "0.1.0"
+  },
+  "security": [
+    {
+      "basicAuth": []
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://time-series-autoai.1wpveihz0wfq.us-south.codeengine.appdomain.cloud"
+    }
+  ],
+  "paths": {
+    "/predict": {
+      "post": {
+        "summary": "JH AutoAI Predict",
+        "operationId": "predict_predict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "schemas": {
+      "PredictRequest": {
+        "type": "object",
+        "properties": {
+          "forecast_window": {
+            "type": "integer",
+            "description": "Number of days to forecast",
+            "default": 3
+          }
+        }
+      },
+      "PredictResponse": {
+        "type": "object",
+        "properties": {
+          "predictions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "quantity": {
+                  "type": "integer"
+                },
+                "sales": {
+                  "type": "number"
+                }
+              },
+              "required": ["quantity", "sales"]
+            }
+          }
+        },
+        "required": ["predictions"]
+      }
+    }
+  }
+}
