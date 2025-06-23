@@ -11,7 +11,7 @@
   ],
   "servers": [
     {
-      "url": "https://time-series-autoai.1wpveihz0wfq.us-south.codeengine.appdomain.cloud"
+      "url": "https://application-e5.1wrbgjmhze46.us-south.codeengine.appdomain.cloud"
     }
   ],
   "paths": {
